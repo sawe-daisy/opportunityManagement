@@ -27,17 +27,17 @@
                 {% if user.is_authenticated %}
         <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
           <div class="container">
-            <a class="navbar-brand mr-4" href="{% url 'welcome'%}" style="color: black;">Veterinary</a>
+            <a class="navbar-brand mr-4" href="{% url 'account'%}" style="color: black;">Opportunity Management </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{% url 'welcome'%}" style="color: black;">Home</a>
+                <a class="nav-item nav-link" href="{% url 'account'%}" style="color: black;">Home</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{% url 'post-create' %}" style="color: black;">Add Officer</a>
+                <a class="nav-item nav-link" href="{% url 'post-create' %}" style="color: black;">Add Account</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: black;">Logout</a>
                 
                 {% endif %}

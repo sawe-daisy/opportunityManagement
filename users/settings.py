@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'users2',
         'USER': 'postgres',
-        'NAME': 'sawedaisy',
+        'password': 'sawedaisy',
     }
 }
 
@@ -93,9 +93,7 @@ import cloudinary.uploader
 import cloudinary.api
 
 import os
-import django_heroku
 import dj_database_url
-from decouple import config,Csv
 from pathlib import Path
 
 
@@ -148,7 +146,9 @@ cloudinary.config(
 )
 
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 CORS_ALLOW_ALL_ORIGINS = True
+LOGIN_REDIRECT_URL='account'
+LOGIN_URL='login'
 
 AUTH_USER_MODEL="accounts.User"

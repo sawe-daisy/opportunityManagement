@@ -1,16 +1,17 @@
 from django import forms
 from .models import User, Account
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import make_password
 
 
 
-class RegistrationForm(forms.ModelForm):
+class RegistrationForm(UserCreationForm):
     @staticmethod
     def validate_password(password: str) -> str:
         return make_password(password)
     class Meta:
         model = User
-        fields = ['name', 'username', 'email', 'password']
+        fields = ['firstName', 'username', 'email']
 
     def save(self, commit=True):
         user=super().save(commit=False)
