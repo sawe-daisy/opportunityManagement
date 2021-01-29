@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+<h3><a class="article-title" style="text-align: center; margin-left: 300px;">Available Opportunities for this account</a></h3>
 <div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; margin: 10px;">
 
-    <h2><a class="article-title" style="margin-bottom: 20px; align-content: center;" href="{% url 'oppCreate' %}">Add Opportunity</a></h2>
+    <h5><a class="article-title mr-20" href="{% url 'oppCreate' %}">Add Opportunity</a></h5>
     {% for post in posts %}
-    <div class="col-md-4" style="margin: 20px;">
+    <div class="col-md-4" style="margin-top: 80px;">
         <img class="rounded-circle article-img" src="{{ post.image.url }}" height="250px" width="300px">
         <div class="media-body">
           <div class="article-metadata">

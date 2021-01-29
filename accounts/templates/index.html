@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+<h3><a class="article-title" style="text-align: center; margin-left: 300px;">Available Accounts</a></h3>
 <div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; margin: 10px;">
     {% for post in posts %}
-    <div class="col-md-4">
+    <div class="col-md-4" style="margin-top: 50px;">
         <img class="rounded-circle article-img" src="{{ post.image.url }}" height="250px" width="300px">
         <div class="media-body">
           <div class="article-metadata">
             <p class="article-content">Name:{{ post.name }}</p>
             <small class="text-muted">Address:{{ post.address }}</small>
           </div>
-          <h2><a class="article-title" href="{% url 'post-detail' post.id %}">View Image</a></h2>
+          <h4><a class="article-title" href="{% url 'post-detail' post.id %}">Account details</a></h4>
         </div>
       </article>
     </div>
