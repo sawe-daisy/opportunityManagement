@@ -81,11 +81,22 @@ WSGI_APPLICATION = 'users.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'users1',
+        'NAME': 'users2',
         'USER': 'postgres',
         'NAME': 'sawedaisy',
     }
 }
+
+from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+import os
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
+from pathlib import Path
 
 
 # Password validation
@@ -112,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -125,3 +136,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK='bootstrap4'
+
+# LOGIN_REDIRECT_URL='gram-landing'
+# LOGIN_URL='login'
+
+cloudinary.config( 
+  cloud_name = "sawedee", 
+  api_key = "616212518566398", 
+  api_secret = "9vv5at5ybHBCEkz0HAcprG3WwAI" 
+)
+
+
+APPEND_SLASH = False
+CORS_ALLOW_ALL_ORIGINS = True
+
+AUTH_USER_MODEL="accounts.User"
