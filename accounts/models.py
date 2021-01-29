@@ -35,6 +35,26 @@ class Account(models.Model):
     def get_absolute_url(self):
         return reverse('account')
 
+Stage=(
+    ('Discovery', "Discovery"),
+    ('Proposal Shared', "Proposal Shared"),
+    ('Negotiations', "Negotiations")
+)
+
+class Opportunity(models.Model):
+    Oname=models.CharField(max_length=50, null=True)
+    image= CloudinaryField(default='image.jpg')
+    user=models.ForeignKey(User, related_name='post', null=True, on_delete=models.CASCADE)
+    account=models.ForeignKey(Account, related_name='accounts',null=True, on_delete=models.CASCADE)
+    amount= models.IntegerField(default=0)
+    stage=models.CharField(choices=Stage, max_length=30)
+
+    def __str__(self):
+        return self.Oname
+
+
+
+
 
 
      
