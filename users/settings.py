@@ -91,6 +91,7 @@ DATABASES = {
 from pathlib import Path
 import cloudinary
 import cloudinary.uploader
+import django_on_heroku
 import cloudinary.api
 
 import os
