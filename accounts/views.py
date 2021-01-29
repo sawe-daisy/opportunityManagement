@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics, viewsets
 from django.template import loader 
-from .models import User
+from .models import User, Account, Opportunity
 from rest_framework.decorators import permission_classes
 from django.http import Http404
 from rest_framework.views import APIView
@@ -51,6 +51,13 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+class OpportunityCreateView(CreateView):
+    model = Opportunity
+    fields = ['image', 'Oname', 'account', 'user', 'amount', 'stage']
+    template_name='accounts/oppForm.html'
+    def form_valid(self, form):
+        return super().form_valid(form)
+
 class PostListView(ListView):
     model = Account
     template_name = 'index.html'
@@ -58,12 +65,31 @@ class PostListView(ListView):
     # ordering = ['-pub_date']
 
 class PostDetailView(DetailView):
-    model = Account
-    template_name= 'posts/image_detail.html'
+    def get_object(pk):
+        try:
+            return Account.objects.get(pk=pk)
+        except Account.DoesNotExist:
+            return Http404
 
-    def get_context_data(self, *args, **kwargs):
-        context=super(PostDetailView, self).get_context_data(*args, **kwargs)
-        stuff=get_object_or_404(Account, id=self.kwargs['pk'])
+    def get(self, request, pk, format=None):
+        posts=Opportunity.objects.filter(account=pk)
+    
+        context={
+            'posts': posts
+        }
+        return render(request, 'accounts/details.html', context)
+
+        return redirect('account')
+
+    # def get_context_data(self, *args, **kwargs):
+    #     return get_object_or_404(Account, pk=self.kwargs.get('pk'))
+    #     print(stuff)
+    #     posts=Opportunity.objects.filter(account=pk)
+        
+    # model = Opportunity
+    # template_name= 'posts/details.html'
+    # context='posts'
+
+    
         # total_likes=stuff.total_likes()
-        # context["total_likes"]=total_likes
-        return context
+        # context["total_likes"]=total_like
