@@ -50,7 +50,7 @@ class Opportunity(models.Model):
     stage=models.CharField(choices=Stage, max_length=30)
 
     def __str__(self):
-        return self.name
+        return self.account
 
     def get_absolute_url(self):
         return reverse('account')
