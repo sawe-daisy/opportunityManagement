@@ -53,7 +53,7 @@ class PostCreateView(CreateView):
 
 class OpportunityCreateView(CreateView):
     model = Opportunity
-    fields = ['image', 'Oname', 'account', 'user', 'amount', 'stage']
+    fields = ['image', 'name', 'account', 'user', 'amount', 'stage']
     template_name='accounts/oppForm.html'
     def form_valid(self, form):
         return super().form_valid(form)

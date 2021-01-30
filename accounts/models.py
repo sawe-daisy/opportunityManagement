@@ -25,7 +25,7 @@ class User(AbstractUser):
 
 class Account(models.Model):
     name=models.CharField(max_length=20)
-    user=models.ForeignKey(User, related_name='account', on_delete=models.CASCADE)
+    user=models.ForeignKey(User, related_name='account', null=True, on_delete=models.CASCADE)
     address=models.CharField(max_length=40)
     image= CloudinaryField(default='image.jpg')
 
@@ -42,7 +42,7 @@ Stage=(
 )
 
 class Opportunity(models.Model):
-    Oname=models.CharField(max_length=50, null=True)
+    name=models.CharField(max_length=50, null=True)
     image= CloudinaryField(default='image.jpg')
     user=models.ForeignKey(User, related_name='post', null=True, on_delete=models.CASCADE)
     account=models.ForeignKey(Account, related_name='accounts',null=True, on_delete=models.CASCADE)
@@ -50,7 +50,7 @@ class Opportunity(models.Model):
     stage=models.CharField(choices=Stage, max_length=30)
 
     def __str__(self):
-        return self.Oname
+        return self.name
 
     def get_absolute_url(self):
         return reverse('account')
